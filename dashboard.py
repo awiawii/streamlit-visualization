@@ -16,10 +16,10 @@ def bymonth(df):
     return monthly_rental
 
 # import dataframe
-daily_df = pd.read_csv(pwd + '\\dashboard\\daily_modified_df.csv')
-hourly_df = pd.read_csv(pwd + '\\dashboard\\hourly_modified_df.csv')
-season_df = pd.read_csv(pwd + '\\dashboard\\melt_season_df.csv')
-weather_df = pd.read_csv(pwd + '\\dashboard\\melt_weathersit_df.csv')
+daily_df = pd.read_csv('daily_modified_df.csv')
+hourly_df = pd.read_csv('hourly_modified_df.csv')
+season_df = pd.read_csv('melt_season_df.csv')
+weather_df = pd.read_csv('melt_weathersit_df.csv')
 
 daily_df['dteday'] = pd.to_datetime(daily_df['dteday'])
 hourly_df['dteday'] = pd.to_datetime(hourly_df['dteday'])
