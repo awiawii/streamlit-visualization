@@ -61,7 +61,10 @@ bymonth_df = bymonth(hourly_df)
 st.header('Bike Sharing Dashboard')
 st.markdown("""
 <div style="text-align: justify">
-  Dashboard ini menyajikan visualisasi data yang menggambarkan penggunaan sepeda berdasarkan waktu, bulan, musim, dan kondisi cuaca. Informasi tersebut memberikan pandangan komprehensif terhadap pola-pola penggunaan sepeda, memungkinkan pengguna untuk memahami tren, perubahan musiman, dan dampak cuaca terhadap aktivitas penggunaan sepeda.
+  Dashboard ini menyajikan visualisasi data yang menggambarkan penggunaan sepeda berdasarkan waktu,
+  bulan, musim, dan kondisi cuaca. Informasi tersebut memberikan pandangan komprehensif terhadap
+  pola-pola penggunaan sepeda, memungkinkan pengguna untuk memahami tren, perubahan musiman,
+  dan dampak cuaca terhadap aktivitas penggunaan sepeda.
 </div>
 """, unsafe_allow_html=True)
 
