@@ -38,7 +38,7 @@ with st.sidebar:
     
     st.markdown("""
     <div style="text-align: justify">
-        Pilih tanggal untuk melihat data pada rentang tanggal tersebut.
+        Select a date to view data within that specific date range.
     </div>
     """, unsafe_allow_html=True)
     
@@ -46,7 +46,7 @@ with st.sidebar:
     
     # Mengambil start_date & end_date dari date_input
     start_date, end_date = st.date_input(
-        label='Rentang Waktu',min_value=min_date,
+        label='Time Range',min_value=min_date,
         max_value=max_date,
         value=[min_date, max_date]
     )
@@ -61,16 +61,15 @@ bymonth_df = bymonth(hourly_df)
 st.header('Bike Sharing Dashboard')
 st.markdown("""
 <div style="text-align: justify">
-  Dashboard ini menyajikan visualisasi data yang menggambarkan penggunaan sepeda berdasarkan waktu,
-  bulan, musim, dan kondisi cuaca. Informasi tersebut memberikan pandangan komprehensif terhadap
-  pola-pola penggunaan sepeda, memungkinkan pengguna untuk memahami tren, perubahan musiman,
-  dan dampak cuaca terhadap aktivitas penggunaan sepeda.
+  This dashboard presents data visualizations depicting bicycle usage based on time, month, season, and weather conditions.
+  The information provides a comprehensive view of patterns in bicycle usage, enabling users to understand trends,
+  seasonal changes, and the impact of weather on bicycle usage activities.
 </div>
 """, unsafe_allow_html=True)
 
 st.markdown("\n")
 
-st.subheader('Rata-rata Pengguna Rental Sepeda Setiap Bulan')
+st.subheader('Average Bicycle Rental Users Per Month')
 # Plotting Rata-rata Pengguna Sepeda Bulanan
 
 fig, ax = plt.subplots(figsize=(16, 8))
@@ -90,17 +89,16 @@ ax.tick_params(axis='y', colors='white')
 
 # Menambahkan label x, label y, dan judul
 ax.set_xlabel('Month', color='white', fontsize=18)
-ax.set_ylabel('Rata-rata', color='white', fontsize=18)
+ax.set_ylabel('Average', color='white', fontsize=18)
 
 # Tampilkan plot menggunakan st.pyplot()
 st.pyplot(fig)
 
 with st.expander("See explanation"):
     st.write(
-        """Berdasarkan data tahun 2011 sampai tahun 2012, Tren pengguna sepeda menunjukkan peningkatan
-        sejak awal tahun hingga pertengahan tahun,
-        khususnya sekitar bulan Juni. Dari bulan Juni hingga September, terlihat bahwa penggunaan
-        sepeda cenderung tetap stabil, namun mulai mengalami penurunan pada bulan Oktober hingga akhir tahun.
+        """Based on the data from 2011 to 2012, the bicycle usage trend indicates an increase from the beginning to the middle of the year,
+        particularly around the month of June. From June to September, it appears that bicycle usage tends to remain stable
+        but starts to decline from October to the end of the year.
         """
     )
 
@@ -114,26 +112,26 @@ date_range = f"{start_date} – {end_date}"
 # Menggunakan metode replace
 date_range_slash = date_range.replace("-", "/")
 
-st.subheader(f'Pengguna Sepeda Harian {date_range_slash}')
+st.subheader(f'Daily Bicycle Users {date_range_slash}')
 
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
     casual_user = main_df.casual.sum()
-    st.metric("Casual Rental", value=casual_user)
+    st.metric("Casual Rentals", value=casual_user)
 
 with col2:
     registered_user = main_df.registered.sum()
-    st.metric("Register Rental", value=registered_user)
+    st.metric("Register Rentals", value=registered_user)
     
 with col3:
     Total_user = main_df.Total.sum()
-    st.metric("Total Rental", value=Total_user)
+    st.metric("Total Rentals", value=Total_user)
     
 st.markdown("\n")
 st.markdown("\n")
-st.subheader(f'Rata-Rata Pengguna Sepeda Setiap Jam')
+st.subheader(f'Average Bicycle Users Per Hour')
 # Plotting rata-rata pengguna setiap jamnya
     
 fig, ax = plt.subplots(figsize=(16, 8))
@@ -153,15 +151,15 @@ ax.tick_params(axis='y', colors='white')
 
 # Menambahkan label x, label y, dan judul
 ax.set_xlabel('Hour', color='white', fontsize=18)
-ax.set_ylabel('Rata-rata', color='white', fontsize=18)
+ax.set_ylabel('Average', color='white', fontsize=18)
 
 # Tampilkan plot menggunakan st.pyplot()
 st.pyplot(fig)
 
 with st.expander("See explanation"):
     st.write(
-        """Rata-rata pengguna sepeda mengalami peningkatan yang mencolok pada dua waktu tertentu,
-        yaitu pada saat jam berangkat kerja sekitar pukul 08.00 pagi, dan pada saat jam pulang kerja sekitar pukul 17.00.
+        """The average bicycle users experience a significant increase at two specific times:
+        during the morning rush hour around 8:00 AM and during the evening rush hour around 5:00 PM.
         """
     )
 
@@ -169,7 +167,7 @@ with st.expander("See explanation"):
 
 st.markdown("\n")
 st.markdown("\n")
-st.subheader(f'Jumlah Pengguna Sepeda Berdasarkan Musim')
+st.subheader(f'Number of Bicycle Users Based on Season')
 #Plotting pengguna berdasarkan musim
 
 fig, ax = plt.subplots(figsize=(16, 8))
@@ -189,22 +187,23 @@ ax.tick_params(axis='y', colors='white')
 
 # Menambahkan label x, label y, dan judul
 ax.set_xlabel('Season', color='white', fontsize=18)
-ax.set_ylabel('Jumlah', color='white', fontsize=18)
-ax.set_title('Jumlah Pengguna Berdasarkan Musim', color='white', fontsize=20)
+ax.set_ylabel('Total', color='white', fontsize=18)
+ax.set_title('Number of Users Based on Season', color='white', fontsize=20)
 
 # Tampilkan plot menggunakan st.pyplot()
 st.pyplot(fig)
 
 with st.expander("See explanation"):
     st.write(
-        """Berdasarkan data tahun 2011 sampai tahun 2012, jumlah tertinggi pengguna sepeda terjadi pada *summer*
-        dan jumlah terendah pengguna sepeda terjadi pada musim *winter*. Dari grafik juga terlihat menunjukkan *left-skewed distribution*.
+        """Based on the data from 2011 to 2012, the highest number of bicycle users occurs during the summer,
+        while the lowest number of bicycle users is observed during the winter season.
+        The graph also indicates a left-skewed distribution.
         """
     )
 
 st.markdown("\n")
 st.markdown("\n")
-st.subheader(f'Jumlah Pengguna Sepeda Berdasarkan Cuaca')
+st.subheader(f'Number of Bicycle Users Based on Weather')
 #Plotting pengguna berdasarkan cuaca
 
 fig, ax = plt.subplots(figsize=(16, 8))
@@ -223,17 +222,18 @@ ax.tick_params(axis='x', colors='white')
 ax.tick_params(axis='y', colors='white')
 
 # Menambahkan label x, label y, dan judul
-ax.set_xlabel('Cuaca', color='white', fontsize=18)
-ax.set_ylabel('Jumlah', color='white', fontsize=18)
-ax.set_title('Jumlah Pengguna Berdasarkan Cuaca', color='white', fontsize=20)
+ax.set_xlabel('Weather', color='white', fontsize=18)
+ax.set_ylabel('Total', color='white', fontsize=18)
+ax.set_title('Number of Users Based on Weather', color='white', fontsize=20)
 
 # Tampilkan plot menggunakan st.pyplot()
 st.pyplot(fig)
 
 with st.expander("See explanation"):
     st.write(
-        """Berdasarkan data tahun 2011 sampai tahun 2012, jumlah tertinggi pengguna sepeda terjadi pada saat cuaca cerah/*clear*
-        dan jumlah terendah pengguna sepeda terjadi pada saat cuaca hujan lebat/*heavy precipitation*. Dari grafik juga terlihat menunjukkan *right-skewed distribution*.
+        """Based on the data from 2011 to 2012, the highest number of bicycle users occurs during clear weather,
+        while the lowest number of bicycle users is observed during heavy precipitation.
+        The graph also indicates a right-skewed distribution.
         """
     )
 
